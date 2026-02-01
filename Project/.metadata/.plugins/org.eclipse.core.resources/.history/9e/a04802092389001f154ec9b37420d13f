@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appointment Details</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/availability list.css">
+</head>
+<body>
+	header>
+        <nav class="navbar">
+            <div class="logo">DocCare</div>
+            <ul class="nav-links">
+                <li><a href="Home.jsp" class="link">Home</a></li>
+                <li><a href="About.jsp" class="link">About</a></li>
+                <li><a href="AvailabilityDisplayServlet" class="link active">Doctors</a></li>
+                <li><a href="#" class="link">Appointments</a></li>
+                <li><a href="PatientAccServlet" class="link">Profile</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <form action="logoutServlet" method="get">
+                    <button type="submit" class="btn">Log Out</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+     <div class="wrapper">
+     	<div class="table-box">
+     		<header>Appointments</header>
+				<table>
+					<tr>
+						<th>Appointment ID</th>
+						<th>Name</th>
+						<th>Phone</th>
+						<th>Record number</th>
+						<th>Date</th>
+						<th>Time</th>
+						<th>Reason</th>
+					</tr>
+					
+					<c:forEach var="appoint" items="${appointment}">
+	                    <tr>
+	                        <td>${appoint.id}</td>
+	                        <td>${appoint.name}</td>
+	                        <td>${appoint.phone}</td>
+	                        <td>${appoint.r_num}</td>
+	                        <td>${appoint.date}</td>
+	                        <td>${appoint.time}</td>
+	                        <td>${appoint.reason}</td>                                          
+	                    </tr>
+                	</c:forEach>
+					
+					
+				</table>
+		</div>
+	</div>
+	
+	 <br><br>
+
+        <!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2024 Your Clinic Name. All Rights Reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/LabReportCreate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/landing.css">
+
+</head>
+<body>   
+    <header>
+            <nav class="navbar">
+                <div class="logo">DocCare</div>
+                <ul class="nav-links">
+                    <li><a href="#" class="link active" >Home</a></li>
+                     <li><a href="#" class="link ">Lab Report</a></li>
+                    <li><a href="set" class="link ">set availability</a></li>
+                    
+                    <li><a href="display" class="link ">availabilities</a></li>
+                    <li><a href="AppointmentDisplayServlet" class="link ">Appointments</a></li>
+                    <li><a href="PatientAccServlet" class="link ">Profile</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    
+                    <form action="logoutServlet" method="get">
+                        <button type="submit" class="btn">Log Out</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+    
+<section id="profile-section">
+    <div class="profile-container">
+        <h2>Create Lab Report</h2>
+        <form action="insert" method="post">
+            <div class="profile-field">
+                <label for="HID">Lab Id:</label>
+                <input type="text" id="id" name="lid" readonly>
+            </div>
+            <div class="profile-field">
+                <label for="Hname">Hospital Name:</label>
+                <input type="text" id="id" name="hname" required>
+            </div>
+            
+            
+            <div class="profile-field">
+                <label for="Pname">Patient Name:</label>
+                <input type="text" id="id" name="pname" required>
+            </div>
+            <div class="profile-field">
+                <label for="test">Test:</label>
+                <input type="text" id="name" name="test" required>
+            </div>
+            <div class="profile-field">
+                <label for="details">Test Result:</label>
+                <input type="text" id="address" name="details" required>
+            </div>
+            <div class="profile-field">
+                <label for="date">Date:</label>
+                <input type="text" id="phone" name="date" required>
+            </div>
+           
+            <button type="submit" class="update-btn">Add Report</button>
+        </form>
+    </div>
+</section>
+
+    <footer>
+        <div class="footer-container">
+            <p>© 2024 City Hospital | All Rights Reserved</p>
+            <p>Contact Us: (123) 456-7890 | info@cityhospital.com</p>
+        </div>
+    </footer>
+</body>
+</html>

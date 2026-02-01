@@ -1,0 +1,277 @@
+package com.patient;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PatientDBUtil {
+	private static boolean isSuccess;
+	private static Connection con= null;
+	private static Statement stat = null;
+	private static ResultSet rs=null;
+	
+	//login
+	
+	public static boolean validateLogin(String username,String password, String usertype) {
+		try {
+			con= DBconnect.getDBConnection();
+			stat=con.createStatement();
+			
+			// SQL query for patient or doctor
+            String sql;
+            if ("patient".equals(usertype)) {
+                sql = "SELECT * FROM patient WHERE Email='" + username + "' AND Password='" + password + "'";
+            } else {
+                sql = "SELECT * FROM doctor WHERE email='" + username + "' AND password='" + password + "'";
+            }
+			
+			
+			//String sql="select * from patient where Email='"+username+"' and Password='"+password+"'";
+			rs=stat.executeQuery(sql);
+			if(rs.next()) {
+				isSuccess=true;
+			}
+			else {
+				isSuccess=false;
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return isSuccess;
+		
+	}
+	//login get p detail
+	public static List<Patient> getPatient(String username){
+		ArrayList<Patient> patient = new ArrayList<>();
+		try {
+			con= DBconnect.getDBConnection();
+			stat=con.createStatement();
+			String sql="select * from patient where Email='"+username+"'";
+			rs=stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				int pid = rs.getInt(1);
+				String fname=rs.getString(2);
+				String lname=rs.getString(3);
+				String phone=rs.getString(4);
+				String dob=rs.getString(5);
+				String email=rs.getString(6);
+				String password=rs.getString(7);
+				
+				Patient newPatient = new Patient(pid, fname, lname, phone,dob ,email, password);
+				patient.add(newPatient);
+				
+				
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return patient;
+		
+	}
+	//get doctor details
+	public static List<Doctor> getDoctor(String username) {
+		  ArrayList<Doctor> doctor = new ArrayList<>();
+	        try {
+	            con = DBconnect.getDBConnection();
+	            stat = con.createStatement();
+	            String sql = "SELECT * FROM doctor WHERE email='" + username + "'";
+	            rs = stat.executeQuery(sql);
+
+	            while (rs.next()) {
+	                int did = rs.getInt(1);
+	                String name = rs.getString(2);
+	                String specialty = rs.getString(3);
+	                String phone = rs.getString(4);
+	                String email = rs.getString(5);
+	                String password = rs.getString(6);
+	                
+	                Doctor newDoctor = new Doctor(did, name, specialty, phone, email, password );
+	                doctor.add(newDoctor);
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return doctor;
+
+	}
+   
+	
+    
+	
+	
+	/*
+	
+	
+	//validation for login
+	public static List <Patient> validate(String username,String password){
+		ArrayList<Patient> patientObj = new ArrayList<>();
+		try {
+			con= DBconnect.getDBConnection();
+			stat=con.createStatement();
+			String sql= "select * from patient where Email='"+username+"' and Password='"+password+"'";
+			rs=stat.executeQuery(sql);
+			if(rs.next()) {
+				int patientID =rs.getInt(1);
+				String patientFName=rs.getString(2);
+				String patientLName=rs.getString(3);
+			    String patientPhone=rs.getString(4);
+				String patientDOB=rs.getString(5);
+				String patientEmail=rs.getString(6);
+				String patientPassword=rs.getString(7);
+				
+				Patient patient= new Patient(patientID,patientFName,patientLName,patientPhone,patientDOB,patientEmail,patientPassword); 
+				patientObj.add(patient);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return patientObj;
+		
+	}*/
+	
+	
+	
+	
+	//create account
+	public static boolean createPatient(String fname,String lname,String phone,String dob,String email,String password) {
+		boolean isSuccess=false;
+		
+		try {
+			con= DBconnect.getDBConnection();
+			stat=con.createStatement();
+			String sql="insert into patient values(0,'"+fname +"','"+lname+"','"+phone+"','"+dob+"','"+email+"','"+password+"' )";
+			int rs=stat.executeUpdate(sql);
+			if(rs>0) {
+				isSuccess=true;
+			}
+			else {
+				isSuccess=false;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return isSuccess;
+		
+	}
+	
+	//update account
+	public static boolean updatePatient(String id,String fname,String lname,String phone,String dob,String email,String password) {
+		try {
+			con= DBconnect.getDBConnection();
+			stat=con.createStatement();
+			String sql= "update patient set First_name='"+fname+"',Last_name='"+lname+"',Phone='"+phone+"',DOB='"+dob+"',Email='"+email+"',Password='"+password+"' where pid='"+id+"'" ;
+			int rs=stat.executeUpdate(sql);
+			if(rs>0) {
+				isSuccess=true;
+			}
+			else {
+				isSuccess=false;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return isSuccess;
+		
+	}
+	
+	//retrieve data
+	public static List<Patient> getPatientDetails(String id){
+		ArrayList<Patient> patient = new ArrayList<>();
+		try {
+			con= DBconnect.getDBConnection();
+			stat=con.createStatement();
+			String sql="select * from patient where pid='"+id+"'";
+			rs=stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				int pid = rs.getInt(1);
+				String fname=rs.getString(2);
+				String lname=rs.getString(3);
+				String phone=rs.getString(4);
+				String dob=rs.getString(5);
+				String email=rs.getString(6);
+				String password=rs.getString(7);
+				
+				Patient newPatient = new Patient(pid, fname, lname, phone,dob ,email, password);
+				patient.add(newPatient);
+				
+				
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return patient;
+		
+	}
+	
+	//delete account
+	public static boolean deletePatient(String id) {
+		int convertedID=Integer.parseInt(id);
+		try {
+			con= DBconnect.getDBConnection();
+			stat=con.createStatement();
+			String sql=" delete from patient where pid='"+convertedID+"'   ";
+			int rs=stat.executeUpdate(sql);
+			if(rs>0) {
+				isSuccess=true;
+			}
+			else {
+				isSuccess=false;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return isSuccess;
+		
+	}
+	
+	
+	public static List<availability> getAllAvailability() {
+		
+		List<availability> availabilities = new ArrayList<>();
+		
+		try {
+			con= DBconnect.getDBConnection();
+			stat=con.createStatement();
+			String sql = "SELECT * FROM availability";
+			rs=stat.executeQuery(sql);
+			 while (rs.next()) {
+		            availability availability = new availability();
+		            availability.setAvailabilityId(rs.getInt("availabilityId"));
+		            availability.setdName(rs.getString("dName"));
+		            availability.setDate(rs.getString("date"));
+		            availability.setStartTime(rs.getString("startTime"));
+		            availability.setEndTime(rs.getString("endTime"));
+		            availability.setHospital(rs.getString("hospital"));
+		            availabilities.add(availability);
+		        }
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		
+        return availabilities;
+    }
+}
+	
+}

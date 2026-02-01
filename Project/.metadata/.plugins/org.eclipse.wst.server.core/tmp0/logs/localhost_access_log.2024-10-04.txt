@@ -1,0 +1,9 @@
+127.0.0.1 - - [04/Oct/2024:21:59:56 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [04/Oct/2024:21:59:56 +0530] "GET /PatientDemo/login.jsp HTTP/1.1" 200 4212
+0:0:0:0:0:0:0:1 - - [04/Oct/2024:21:59:56 +0530] "GET /PatientDemo/js/scripts.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [04/Oct/2024:21:59:56 +0530] "GET /PatientDemo/css/login.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [04/Oct/2024:21:59:57 +0530] "GET /favicon.ico HTTP/1.1" 404 763
+0:0:0:0:0:0:0:1 - - [04/Oct/2024:22:00:06 +0530] "POST /PatientDemo/PatientLoginServlet HTTP/1.1" 200 3864
+0:0:0:0:0:0:0:1 - - [04/Oct/2024:22:00:11 +0530] "GET /PatientDemo/patientAccountUpdate.jsp?id=6&fname=Sasanka&lname=Karunarathna&phone=0784583777&dob=2-9-2002&email=sasikaru%40gmail.com&password=karu HTTP/1.1" 200 3403
+0:0:0:0:0:0:0:1 - - [04/Oct/2024:22:00:16 +0530] "POST /PatientDemo/PatientUpdateAccServlet HTTP/1.1" 200 3864
+0:0:0:0:0:0:0:1 - - [04/Oct/2024:22:00:18 +0530] "GET /PatientDemo/patientAccountDelete.jsp?id=6&fname=Sasanka&lname=Karunarathna&phone=0784583777&dob=2-9-2002&email=sasikaru%40gmail.com&password=karu HTTP/1.1" 200 3403

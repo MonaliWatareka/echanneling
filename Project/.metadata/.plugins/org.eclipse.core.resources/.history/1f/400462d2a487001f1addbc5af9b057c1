@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/appointments list.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="nav">
+        <div class="nav-logo">
+            <p>DocCare</p>
+        </div>
+        <div class="nav-menu">
+            <ul>
+                <li><a href="doctorHome.jsp" class="link">Home</a></li>
+                <li><a href="setAvailability.jsp" class="link">Set Availability</a></li>
+                <li><a href="availabilityList.jsp" class="link">My Availabilities</a></li>
+                <li><a href="appointmentsList.jsp" class="link active">Appointments</a></li>
+                <li><a href="doctorProfile.jsp" class="link">Profile</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="table-box" >
+            <header>Your Appointments</header>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Patient Name</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>2024-10-10</td>
+                    <td>John Doe</td>
+                    <td>09:00 AM</td>
+                    <td>Confirmed</td>
+                    <td><button class="reject-btn" onclick="reject()" style="border-radius:25px;">Reject</button></td>
+                </tr>
+                <!-- More rows here -->
+            </table>
+        </div>
+    </div>
+
+    <script>
+        
+    </script>
+
+        <!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2024 Your Clinic Name. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

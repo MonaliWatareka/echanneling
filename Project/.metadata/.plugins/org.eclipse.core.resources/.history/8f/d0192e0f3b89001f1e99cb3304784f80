@@ -1,0 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/LabReportUpdate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Home.css">
+</head>
+<body>
+<header>
+        <div class="header-container">
+        <div class="logo">
+                <img src="${pageContext.request.contextPath}/Images/hui.jpg" alt="">
+              </div>
+            <nav>
+                <ul>
+                    <li><a href="Home.jsp">Home</a></li>
+                    <li><a href="Profile.jsp">Profile</a></li>
+                    <li><a href="LabReportCreate.jsp">Lab Create</a></li>
+                    <li><a href="LabReport.jsp">Lab Report Details</a></li>
+                    <li><a href="labReportupdate.jsp">Lab Report Update</a></li>
+                    <li><a href="LabReportDelete.jsp">Lab Report Delete</a></li>
+                    <li><a href="Aboutus.jsp">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+     <% 
+     String id=request.getParameter("lid");
+     String name=request.getParameter("hName");
+     String pname=request.getParameter("patientName");
+     String test=request.getParameter("testType");
+     String details=request.getParameter("testResult");
+     String date=request.getParameter("date");
+     %>
+     <section id="update-section">
+    <div class="update-container">
+        <h2>Update Lab Report</h2>
+        <form action="update" method="post">
+            <div class="profile-field">
+                <label for="HID">Lab Id:</label>
+                <input type="text" id="id" name="lid" value="<%=id%>"readonly>
+            </div>
+            <div class="profile-field">
+                <label for="Hname">Hospital Name:</label>
+                <input type="text" id="hname" name="hname" value="<%=name%>" required>
+            </div>
+            
+            <div class="profile-field">
+                <label for="Pname">Patient Name:</label>
+                <input type="text" id="pname" name="pname" value="<%=pname%>" required>
+            </div>
+            <div class="profile-field">
+                <label for="test">Test:</label>
+                <input type="text" id="test" name="test" value="<%=test%>" required>
+            </div>
+            <div class="profile-field">
+                <label for="details">Test Result:</label>
+                <input type="text" id="details" name="details" value="<%=details%>"required>
+            </div>
+            <div class="profile-field">
+                <label for="date">Date:</label>
+                <input type="text" id="phone" name="date"value="<%=date%>"required>
+            </div>
+           
+            <button type="submit" class="update-btn" name="submit" value="submit">Update</button>
+        </form>
+         </div>
+     </section>
+     <footer>
+        <div class="footer-container">
+            <p>© 2024 City Hospital | All Rights Reserved</p>
+            <p>Contact Us: (123) 456-7890 | info@cityhospital.com</p>
+        </div>
+    </footer>
+    </body>
+</html>

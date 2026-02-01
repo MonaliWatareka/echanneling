@@ -1,0 +1,41 @@
+package com.patient;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class deleteDoctorServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+   
+    public deleteDoctorServlet() {
+        super();
+       
+    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+String id =request.getParameter("id");
+		
+		boolean isTrue;
+		
+		isTrue = PatientDBUtil.deleteDoctor(id);
+		
+		if(isTrue == true) {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("docLogin.jsp");
+			dispatcher.forward(request, response);
+		
+		}else {
+		
+			List<doctor> docDetails = doctorDBUtil.getDoctorDetails(id);
+			request.setAttribute("docDetails", docDetails);
+				
+			RequestDispatcher dispatcher = request.getRequestDispatcher("doctorProfile.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+	
+	}
+
+}
