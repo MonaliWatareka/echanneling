@@ -82,12 +82,17 @@ Delete lab report record
 - **The project is organized following the MVC architecture and proper Java coding conventions to ensure clarity and scalability.**
 
 # Project Highlights
+
 - **Technology Stack:**
 Java Servlets and JSP
 MVC Architecture
+
 - **OOP Principles:**
 Utilized abstraction, inheritance, interfaces, and polymorphism.
--**Session Management: -Enabled appointment booking functionality without requiring a login**
+
+-**Session Management**: 
+Enabled appointment booking functionality without requiring a login
+
 -**Coding Standards:**
 Proper naming conventions for classes, methods, and variables.
 Clear separation of concerns across layers: Controller, DAO, Model, Service.
